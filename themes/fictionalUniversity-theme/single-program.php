@@ -78,6 +78,21 @@
                 get_template_part("template-parts/content-event");
             endwhile?>
     <?php endif?>
+    <?php wp_reset_postdata()?>
+    <?php
+        $relatedCampus = get_field("related_campus");
+        if ($relatedCampus):
+    ?>
+        <hr class="section-break">
+        <h2 class="headline headline--medium">Title is Available At These Campuses:</h2>
+        <ul class="min-list link-list">
+        <?php foreach ($relatedCampus as $campus):?>
+            <li>
+                <a href="<?php echo get_the_permalink($campus)?>"><?php echo get_the_title($campus)?></a>
+            </li>
+        <?php endforeach?>
+        </ul>
+    <?php endif?>
 </div>
 <?php endwhile?>
 <?php get_footer()?>

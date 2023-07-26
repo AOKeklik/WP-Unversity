@@ -25,4 +25,37 @@
         </div>
     </div>
     <?php
-        $
+        $relatedPrograms = new WP_Query(array (
+            "posts_per_page" => -1,
+            "post_type" => "program",
+            "orderby" => "title",
+            "order" => "asc",
+            "meta_query" => array(
+                array (
+                    "key" => "related_campus",
+                    "compare" => "like",
+                    "value" => get_the_ID()
+                )
+            )
+        ));
+        if ($relatedPrograms->have_posts()):
+    ?>
+        <hr class="section-break">
+        <h2 class="headline headline--medium">Programs Available At This Campus</h2>
+        <ul class="min-list link-list">
+    <?php
+        while ($relatedPrograms->have_posts()):
+            $relatedPrograms->the_post();
+    ?>
+            <li>
+                <a href=""><?php the_title()?></a>
+            </li>
+    <?php endwhile?>
+        </ul>
+    <?php endif?>
+    <?php wp_reset_postdata()?>
+</div>
+<?php 
+    endwhile;
+    get_footer();
+?>
