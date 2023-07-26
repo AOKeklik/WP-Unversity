@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="UTF-8"?><rss version="2.0"
+	xmlns:content="http://purl.org/rss/1.0/modules/content/"
+	xmlns:wfw="http://wellformedweb.org/CommentAPI/"
+	xmlns:dc="http://purl.org/dc/elements/1.1/"
+	xmlns:atom="http://www.w3.org/2005/Atom"
+	xmlns:sy="http://purl.org/rss/1.0/modules/syndication/"
+	xmlns:slash="http://purl.org/rss/1.0/modules/slash/"
+	>
+
+<channel>
+	<title>Award &#8211; Fictional University</title>
+	<atom:link href="/category/award/feed/" rel="self" type="application/rss+xml" />
+	<link>/</link>
+	<description></description>
+	<lastBuildDate>Thu, 13 Jul 2023 14:13:11 +0000</lastBuildDate>
+	<language>en-US</language>
+	<sy:updatePeriod>
+	hourly	</sy:updatePeriod>
+	<sy:updateFrequency>
+	1	</sy:updateFrequency>
+	<generator>https://wordpress.org/?v=6.2.2</generator>
+	<item>
+		<title>New Post 3</title>
+		<link>/2023/07/13/new-post-3/</link>
+					<comments>/2023/07/13/new-post-3/#respond</comments>
+		
+		<dc:creator><![CDATA[Onur]]></dc:creator>
+		<pubDate>Thu, 13 Jul 2023 14:12:35 +0000</pubDate>
+				<category><![CDATA[Award]]></category>
+		<category><![CDATA[Genma]]></category>
+		<category><![CDATA[Genn]]></category>
+		<guid isPermaLink="false">/?p=86</guid>
+
+					<description><![CDATA[Lorem Ipsum is simply dummy text of the printing and typesetting industry. ]]></description>
+										<content:encoded><![CDATA[
+<p><strong>Lorem Ipsum</strong> is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry&#8217;s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.</p>
+]]></content:encoded>
+					
+					<wfw:commentRss>/2023/07/13/new-post-3/feed/</wfw:commentRss>
+			<slash:comments>0</slash:comments>
+		
+		
+			</item>
+		<item>
+		<title>New Post 2</title>
+		<link>/2023/07/13/new-post-2/</link>
+					<comments>/2023/07/13/new-post-2/#respond</comments>
+		
+		<dc:creator><![CDATA[Onur]]></dc:creator>
+		<pubDate>Thu, 13 Jul 2023 13:59:41 +0000</pubDate>
+				<category><![CDATA[Award]]></category>
+		<category><![CDATA[Newcategory]]></category>
+		<category><![CDATA[NewTag]]></category>
+		<guid isPermaLink="false">/?p=82</guid>
+
+					<description><![CDATA[Lorem Ipsum is simply dummy text of the printing and typesetting industry.]]></description>
+										<content:encoded><![CDATA[
+<p><strong>Lorem Ipsum</strong> is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry&#8217;s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.</p>
+]]></content:encoded>
+					
+					<wfw:commentRss>/2023/07/13/new-post-2/feed/</wfw:commentRss>
+			<slash:comments>0</slash:comments>
+		
+		
+			</item>
+		<item>
+		<title>Test won Award</title>
+		<link>/2023/06/18/test-won-award/</link>
+					<comments>/2023/06/18/test-won-award/#respond</comments>
+		
+		<dc:creator><![CDATA[Onur]]></dc:creator>
+		<pubDate>Sun, 18 Jun 2023 16:56:04 +0000</pubDate>
+				<category><![CDATA[Award]]></category>
+		<guid isPermaLink="false">/?p=47</guid>
+
+					<description><![CDATA[Lorem Ipsum is simply dummy text of the printing and typesetting industry. ]]></description>
+										<content:encoded><![CDATA[
+<p><strong>Lorem Ipsum</strong>&nbsp;is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry’s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</p>
+]]></content:encoded>
+					
+					<wfw:commentRss>/2023/06/18/test-won-award/feed/</wfw:commentRss>
+			<slash:comments>0</slash:comments>
+		
+		
+			</item>
+		<item>
+		<title>We Won An Award</title>
+		<link>/2023/06/18/we-won-an-award/</link>
+					<comments>/2023/06/18/we-won-an-award/#respond</comments>
+		
+		<dc:creator><![CDATA[Onur]]></dc:creator>
+		<pubDate>Sun, 18 Jun 2023 16:51:17 +0000</pubDate>
+				<category><![CDATA[Award]]></category>
+		<category><![CDATA[Uncategorized]]></category>
+		<guid isPermaLink="false">/?p=45</guid>
+
+					<description><![CDATA[Lorem Ipsum is simply dummy text of the printing and typesetting industry. ]]></description>
+										<content:encoded><![CDATA[
+<p><strong>Lorem Ipsum</strong>&nbsp;is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry&#8217;s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</p>
+]]></content:encoded>
+					
+					<wfw:commentRss>/2023/06/18/we-won-an-award/feed/</wfw:commentRss>
+			<slash:comments>0</slash:comments>
+		
+		
+			</item>
+	</channel>
+</rss>

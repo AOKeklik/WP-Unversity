@@ -1,0 +1,19 @@
+{
+	"name": "themes",
+	"version": "1.0.0",
+	"description": "",
+	"main": "index.js",
+	"scripts": {
+		"start": "wp-scripts start"
+	},
+	"keywords": [],
+	"author": "",
+	"license": "ISC",
+	"dependencies": {
+		"@glidejs/glide": "^3.6.0",
+		"@wordpress/scripts": "^26.9.0",
+		"axios": "^1.4.0",
+		"leaflet": "^1.9.4",
+		"normalize.css": "^8.0.1"
+	}
+}
