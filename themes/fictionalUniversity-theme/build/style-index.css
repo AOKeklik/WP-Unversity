@@ -1237,6 +1237,75 @@ body.admin-bar .search-overlay {
   overflow: hidden;
 }
 
+.pagination {
+  margin-top: 3.2rem;
+  padding: 0 3.5rem;
+}
+.pagination::after {
+  content: "";
+  display: table;
+  clear: both;
+}
+.pagination__btn--prev {
+  float: left;
+}
+.pagination__btn--next {
+  float: right;
+}
+.pagination-btn--inline {
+  color: #FAF0CA;
+  font-size: 1.3rem;
+  font-weight: 600;
+  border: none;
+  background-color: #EE964B;
+  padding: 0.8rem 1.2rem;
+  border-radius: 10rem;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  transition: all 0.2s;
+}
+.pagination-btn--inline .search__icon {
+  height: 1.6rem;
+  width: 1.6rem;
+  fill: currentColor;
+  margin: 0 0.2rem;
+}
+.pagination-btn--inline span {
+  margin: 0 0.4rem;
+}
+.pagination-btn--inline:hover {
+  color: #fff;
+  background-color: #F95738;
+}
+.pagination-btn--inline:focus {
+  outline: none;
+}
+
+.message,
+.error {
+  max-width: 40rem;
+  margin: 0 auto;
+  padding: 5rem 4rem;
+  display: flex;
+}
+.message svg,
+.error svg {
+  height: 3rem;
+  width: 3rem;
+  fill: #EE964B;
+  transform: translateY(-0.3rem);
+}
+.message p,
+.error p {
+  margin: 0;
+  padding: 0;
+  margin-left: 1.5rem;
+  font-size: 1.8rem;
+  line-height: 1.5;
+  font-weight: 600;
+}
+
 .professor-cards {
   margin: 0;
   padding: 0;
