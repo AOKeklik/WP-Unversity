@@ -326,6 +326,8 @@ li {
 @media (min-width: 960px) {
   .row {
     margin-right: -50px;
+    display: flex;
+    flex-wrap: wrap;
   }
   .one-half,
   .one-third,

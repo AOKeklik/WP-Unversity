@@ -1,4 +1,6 @@
 <?php
+/* inc */
+require get_theme_file_path("./inc/search-route.php");
 /* template */
 function pageBanner ($args = NULL) {
     if (!isset($args['title'])) $args['title'] = get_the_title(); 

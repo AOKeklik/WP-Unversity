@@ -39,7 +39,7 @@ function university_post_types () {
     // program
     register_post_type("program", array (
         "show_in_rest" => true,
-        "supports" => array("title", "editor"),
+        "supports" => array("title"),
         "rewrite" => array("slug" => "programs"),
         "has_archive" => true,
         "public" => true,

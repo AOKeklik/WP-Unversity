@@ -2,8 +2,12 @@ import icons from "../../images/icons.svg"
 class View {
 	_data
 	render(data, render = true) {
-		if (!data || (Array.isArray(data) && data.length === 0))
+		if (
+			!data ||
+			(Array.isArray(data) && data.every(n => n[1].length === 0))
+		)
 			return this.renderError()
+
 		this._data = data
 		const markup = this._generateMarkup()
 		if (!render) return markup
@@ -113,25 +117,120 @@ const resultView = new (class ResultView extends View {
 		const renderData = this._data
 			.map(result => previewView.render(result, false))
 			.join("")
-		return `
-			<h2 class="search-overlay__section-title">General Information</h2>
-			<ul class="link-list min-list">
-				${renderData}
-			</ul>
-		`
+
+		return `<div class="row">
+			${renderData}
+		</div>`
 	}
 })()
 const previewView = new (class PreviewView extends View {
 	_generateMarkup() {
-		const {
-			type,
-			title: { rendered },
-			author_name,
-			link,
-		} = this._data
-		return `<li><a href="${link}">${rendered}</a> ${
-			type === "post" ? `post by ${author_name}` : ""
-		}</li>`
+		let renderItems = {
+			title: "",
+			items() {},
+		}
+		const that = this
+		if (this._data[0] === "generalInfo")
+			renderItems = {
+				title: "General Information",
+				items: function () {
+					return that._data[1].length
+						? that._data[1]
+								.map(
+									n =>
+										`<li><a href="${n.permalink}">${
+											n.title
+										}</a> ${
+											n.postType === "post"
+												? `post by ${n.authorName}`
+												: ""
+										}</li>`
+								)
+								.join("")
+						: "<p>No general information matches that search.</p>"
+				},
+			}
+		if (this._data[0] === "programs")
+			renderItems = {
+				title: "Programs",
+				items: function () {
+					return that._data[1].length
+						? that._data[1]
+								.map(
+									n =>
+										`<li><a href="${n.permalink}">${n.title}</a></li>`
+								)
+								.join("")
+						: `<p>No programs match that search. <a href="${universityData.root_url}/programs">View all programs</a></p>`
+				},
+			}
+		if (this._data[0] === "professors")
+			renderItems = {
+				title: "Professors",
+				items: (renderItems.items = function () {
+					return that._data[1].length
+						? that._data[1]
+								.map(
+									n =>
+										`<li class="professor-card__list-item">
+											<a class="professor-card" href="${n.permalink}">
+												<img class="professor-card__image" src="${n.image}">
+												<span class="professor-card__name">${n.title}</span>
+											</a>
+										</li>`
+								)
+								.join("")
+						: `<p>No professors match that search.</p>`
+				}),
+			}
+		if (this._data[0] === "campuses")
+			renderItems = {
+				title: "Campuses",
+				items: (renderItems.items = function () {
+					return that._data[1].length
+						? that._data[1]
+								.map(
+									n =>
+										`<li><a href="${n.permalink}">${n.title}</a></li>`
+								)
+								.join("")
+						: `<p>No campuses match that search. <a href="${universityData.root_url}/campuses">View all campuses</a></p>`
+				}),
+			}
+		if (this._data[0] === "events")
+			renderItems = {
+				title: "Events",
+				items: (renderItems.items = function () {
+					return that._data[1].length
+						? that._data[1]
+								.map(
+									n =>
+										`<div class="event-summary">
+											<a class="event-summary__date t-center" href="${n.permalink}">
+												<span class="event-summary__month">${n.month}</span>
+												<span class="event-summary__day">${n.day}</span>  
+											</a>
+											<div class="event-summary__content">
+												<h5 class="event-summary__title headline headline--tiny"><a href="${n.permalink}">${n.title}</a></h5>
+												<p>${n.description} <a href="${n.permalink}" class="nu gray">Learn more</a></p>
+											</div>
+										</div>`
+								)
+								.join("")
+						: `<p>No events match that search. <a href="${universityData.root_url}/events">View all events</a></p>`
+				}),
+			}
+
+		return `<div class="one-third">
+			<h2 class="search-overlay__section-title">${renderItems.title}</h2>
+			<ul class="${
+				this._data[0] !== "professors"
+					? "link-list min-list"
+					: "professor-cards"
+			}">
+				${renderItems.items()}
+			</ul>
+		</div>`
 	}
 })()
 const paginationView = new (class PaginationView extends View {
@@ -146,10 +245,15 @@ const paginationView = new (class PaginationView extends View {
 		})
 	}
 	_generateMarkup() {
+		console.log(this._data.results)
+		const results = this._data.results
+		const paginationLenght = results.slice().reduce((total, n) => {
+			if (total > n[1].length) return total
+			else return n[1].length
+		}, results[0].length)
+
 		const currentPage = this._data.page
-		const numPages = Math.ceil(
-			this._data.results.length / this._data.resultsPerPage
-		)
+		const numPages = Math.ceil(paginationLenght / this._data.resultsPerPage)
 
 		if (currentPage === 1 && numPages > 1)
 			return `
@@ -196,7 +300,7 @@ const paginationView = new (class PaginationView extends View {
 		return ""
 	}
 })()
-//  -----controller -----
+//  -----controllers -----
 searchView.addHandlerSearch(controllerSearchReasults)
 async function controllerSearchReasults() {
 	try {
@@ -224,7 +328,13 @@ function controlPagination(goToPage) {
 const state = {
 	search: {
 		query: "",
-		results: [],
+		results: {
+			generalInfo: [],
+			professors: [],
+			programs: [],
+			events: [],
+			campuses: [],
+		},
 		page: 1,
 		resultsPerPage: 3,
 	},
@@ -232,11 +342,9 @@ const state = {
 async function loadSearchResults(query) {
 	try {
 		const data = await getAllData(
-			"/wp-json/wp/v2/posts?search=" + query,
-			"/wp-json/wp/v2/event?search=" + query
+			"/wp-json/university/v3/search?term=" + query
 		)
-		console.log(data)
-		state.search.results = [...data]
+		state.search.results = Object.entries(data)
 		state.search.page = 1
 	} catch (err) {
 		throw err
@@ -247,29 +355,26 @@ function getSearchResultsPage(page = state.search.page) {
 	const start = (page - 1) * state.search.resultsPerPage
 	const end = page * state.search.resultsPerPage
 
-	return state.search.results.slice(start, end)
+	const newData = []
+	for (const results of state.search.results) {
+		newData.push([results[0], results[1].slice(start, end)])
+	}
+	console.log(state.search.results)
+
+	return newData
 }
 // ----- fetch -----
-async function getAllData(url1, url2) {
+async function getAllData(url) {
 	try {
-		const [res1, res2] = await Promise.all([
-			fetch(universityData.root_url + url1, {
-				method: "get",
-				headers: {
-					Accept: "application/json",
-					"Content-Type": "application/json",
-				},
-			}),
-			fetch(universityData.root_url + url2, {
-				method: "get",
-				headers: {
-					Accept: "application/json",
-					"Content-Type": "application/json",
-				},
-			}),
-		])
-		if (!res1.ok) throw new Error("Fail Fetch!!")
-		const data = (await res1.json()).concat(await res2.json())
+		const res = await fetch(universityData.root_url + url, {
+			method: "get",
+			headers: {
+				Accept: "application/json",
+				"Content-Type": "application/json",
+			},
+		})
+		if (!res.ok) throw new Error("Fail Fetch!!")
+		const data = await res.json()
 		return data
 	} catch (err) {
 		console.log(err)
@@ -277,8 +382,5 @@ async function getAllData(url1, url2) {
 	}
 }
 function wait(ms) {
-	console.log("wait!!")
 	return new Promise((resolve, _) => setTimeout(resolve, 100 * ms))
 }
-
-// export default new Search()
