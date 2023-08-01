@@ -343,7 +343,7 @@ const searchView = new class SearchView extends View {
     super();
     this._renderSearchHtml();
     this.searchField = document.querySelector("#search-term");
-    this.openButton = document.querySelectorAll(".js-search-trigger")[1];
+    this.openButton = document.querySelectorAll(".js-search-trigger");
     this.closeButton = document.querySelector(".search-overlay__close");
     this.searchOverlay = document.querySelector(".search-overlay");
     this._events();
@@ -356,7 +356,7 @@ const searchView = new class SearchView extends View {
     this.searchField.addEventListener("keyup", handler.bind(this));
   }
   _events() {
-    this.openButton.addEventListener("click", this._openOverlay.bind(this));
+    this.openButton.forEach(e => e.addEventListener("click", this._openOverlay.bind(this)));
     this.closeButton.addEventListener("click", this._closeOverlay.bind(this));
     document.addEventListener("keydown", this._doWhenKeyPressed.bind(this));
   }
