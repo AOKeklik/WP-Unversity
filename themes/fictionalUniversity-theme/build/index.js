@@ -360,7 +360,8 @@ const searchView = new class SearchView extends View {
     this.closeButton.addEventListener("click", this._closeOverlay.bind(this));
     document.addEventListener("keydown", this._doWhenKeyPressed.bind(this));
   }
-  async _openOverlay() {
+  async _openOverlay(e) {
+    e.preventDefault();
     this.searchOverlay.classList.add("search-overlay--active");
     document.body.classList.add("body-no-scroll");
     this._clearInput();

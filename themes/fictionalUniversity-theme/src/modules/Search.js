@@ -66,7 +66,8 @@ const searchView = new (class SearchView extends View {
 		)
 		document.addEventListener("keydown", this._doWhenKeyPressed.bind(this))
 	}
-	async _openOverlay() {
+	async _openOverlay(e) {
+		e.preventDefault()
 		this.searchOverlay.classList.add("search-overlay--active")
 		document.body.classList.add("body-no-scroll")
 		this._clearInput()

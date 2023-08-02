@@ -74,7 +74,7 @@ class Upgrade_Handler {
 			'temp_files_dir'          => trailingslashit( $temp_dir ),
 			'additional_urls'         => '',
 			'additional_files'        => '',
-			'urls_to_exclude'         => array(),
+			'urls_to_exclude'         => 'wp-json\nwp-login.php',
 			'delivery_method'         => 'zip',
 			'local_dir'               => '',
 			'relative_path'           => '',
@@ -84,7 +84,7 @@ class Upgrade_Handler {
 			'archive_name'            => null,
 			'archive_start_time'      => null,
 			'archive_end_time'        => null,
-			'debugging_mode'          => '0',
+			'debugging_mode'          => false,
 			'http_basic_auth_digest'  => null,
 		);
 
@@ -101,8 +101,10 @@ class Upgrade_Handler {
 			// Sync database.
 			Page::create_or_update_table();
 
-			// Migrate settings.
-			Migrate_Settings::migrate();
+			if ( floatval( $version ) < floatval( '3.0.4' ) ) {
+				// Migrate settings.
+				Migrate_Settings::migrate();
+			}
 
 			// Update version.
 			self::$options

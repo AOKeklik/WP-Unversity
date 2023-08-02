@@ -82,3 +82,10 @@ function university_adjust_queries ($query) {
         ));
     endif;
 }
+
+// ignore files
+add_filter("ai1wm_exclude_themes_from_export", "ignoreCurtainFiles");
+function ignoreCurtainFiles ($exclude_filters) {
+    $exclude_filters[] = "fictionalUniversity-theme/node_modules";
+    return $exclude_filters;
+}

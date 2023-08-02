@@ -8,7 +8,7 @@ if ( ! defined( 'ABSPATH' ) ) {
  * Plugin Name:       Simply Static
  * Plugin URI:        https://patrickposner.dev
  * Description:       A static site generator to create fast and secure static versions of your WordPress website.
- * Version:           3.0.2
+ * Version:           3.0.4
  * Author:            Patrick Posner
  * Author URI:        https://patrickposner.dev
  * License:           GPL-2.0+
@@ -19,7 +19,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 define( 'SIMPLY_STATIC_PATH', plugin_dir_path( __FILE__ ) );
 define( 'SIMPLY_STATIC_URL', untrailingslashit( plugin_dir_url( __FILE__ ) ) );
-define( 'SIMPLY_STATIC_VERSION', '3.0.2' );
+define( 'SIMPLY_STATIC_VERSION', '3.0.4' );
 
 // Check PHP version.
 if ( version_compare( PHP_VERSION, '7.4', '<' ) ) {
@@ -49,6 +49,20 @@ if ( ! function_exists( 'simply_static_run_plugin' ) ) {
 		require_once SIMPLY_STATIC_PATH . 'src/class-ss-plugin.php';
 
 		Simply_Static\Plugin::instance();
+
+		// Maybe update excludes.
+		$options = get_option( 'simply-static' );
+
+		if ( isset( $options['urls_to_exclude'] ) && is_array( $options['urls_to_exclude'] ) ) {
+			$urls_to_exclude = [];
+
+			foreach ( $options['urls_to_exclude'] as $url => $data ) {
+				$urls_to_exclude[] = $url;
+			}
+
+			$options['urls_to_exclude'] = implode( "\n", $urls_to_exclude );
+			update_option( 'simply-static', $options );
+		}
 	}
 
 	// Update required?
