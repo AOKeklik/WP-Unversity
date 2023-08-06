@@ -3,6 +3,26 @@
 add_action("init", "university_post_types");
 function university_post_types () {
 
+    // note
+    $notes = array (
+        "capability_type" => "note",
+        "map_meta_cap" => true,
+        "show_in_rest" => true,
+        "supports" => array ("title", "editor"),
+        "public" => true,
+        "show_ui" => true,
+        "rewrite" => array("slug" => "campuses"),
+        "description" => "We have several conveniently located campuses.",
+        "labels" => array (
+            "name" => "Notes",
+            "add_new_item" => "Add New Notes",
+            "all_items" => "Edit Notes",
+            "singular_name" => "Notes"
+        ),
+        "menu_icon" => "dashicons-location-alt"
+    );
+    register_post_type("note", $notes);
+
     // campus
     register_post_type("campus", array (
         "capability_type" => "campus",
@@ -42,6 +62,8 @@ function university_post_types () {
 
     // program
     register_post_type("program", array (
+        "capability_type" => "note",
+        "map_meta_cap" => true,
         "show_in_rest" => true,
         "supports" => array("title"),
         "rewrite" => array("slug" => "programs"),
@@ -60,6 +82,8 @@ function university_post_types () {
 
     // professor
     register_post_type("professor", array (
+        "capability_type" => "note",
+        "map_meta_cap" => true,
         "show_in_rest" => true,
         "supports" => array ("title", "editor", "thumbnail"),
         "rewrite" => array("slug" => "professor"),
