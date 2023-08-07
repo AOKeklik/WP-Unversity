@@ -81,8 +81,8 @@ const searchView = new (class SearchView extends View {
 		this.#isOverlayOpen = false
 	}
 	_doWhenKeyPressed(e) {
-		if (e.keyCode === 83 && !this.#isOverlayOpen) this._openOverlay()
-		if (e.keyCode === 32 && this.#isOverlayOpen) this._closeOverlay()
+		if (e.keyCode === 83 && !this.#isOverlayOpen) this._openOverlay(e)
+		if (e.keyCode === 32 && this.#isOverlayOpen) this._closeOverlay(e)
 	}
 	_clearInput() {
 		this.searchField.value = ""
@@ -108,7 +108,6 @@ const searchView = new (class SearchView extends View {
 						<div class="pagination"></div>
 					</div>
 				</div>
-			
 			`
 		)
 	}

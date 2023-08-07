@@ -734,6 +734,10 @@ body.login {
   opacity: 0;
 }
 
+.fa-spin {
+  font-size: 1.3rem;
+}
+
 .site-header {
   z-index: 3;
   position: absolute;

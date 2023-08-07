@@ -9,14 +9,14 @@ function university_post_types () {
         "map_meta_cap" => true,
         "show_in_rest" => true,
         "supports" => array ("title", "editor"),
-        "public" => true,
+        "public" => false,
         "show_ui" => true,
-        "rewrite" => array("slug" => "campuses"),
+        "rewrite" => array("slug" => "notes"),
         "description" => "We have several conveniently located campuses.",
         "labels" => array (
             "name" => "Notes",
             "add_new_item" => "Add New Notes",
-            "all_items" => "Edit Notes",
+            "all_items" => "All Notes",
             "singular_name" => "Notes"
         ),
         "menu_icon" => "dashicons-location-alt"
