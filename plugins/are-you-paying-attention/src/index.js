@@ -93,7 +93,6 @@ function EditComponent(props) {
 		}
 		setAttributes({ correctAnswer: index })
 	}
-	console.log(correctAnswer)
 	const handleSubmitForm = () =>
 		setAttributes({ answers: answers.concat([""]) })
 	return (

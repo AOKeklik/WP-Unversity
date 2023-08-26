@@ -42,6 +42,7 @@ function createLike ($data) {
         die("Only logged in users can create a like.");
     endif;
 }
+
 function deleteLike ($data) {
     $likedId = sanitize_text_field($data["likedId"]);
     if (get_current_user_id() == get_post_field("post_author", $likedId) && get_post_type($likedId) == "like"):
