@@ -2,6 +2,8 @@ import "./index.scss"
 import { useSelect } from "@wordpress/data"
 import { useState, useEffect } from "react"
 
+const __ = wp.i18n.__
+
 wp.blocks.registerBlockType("ourplugin/featured-professor", {
 	title: "Professor Callout",
 	description:
@@ -79,7 +81,9 @@ function EditComponent({ attributes: { profId }, setAttributes }) {
 			{renderProfessors ? (
 				<div className="professor-select-container">
 					<select onChange={handleChangeProfessor}>
-						<option value="">Select a professor</option>
+						<option value="">
+							{__("Select a professor", "featured-professor")}
+						</option>
 						{renderProfessors}
 					</select>
 				</div>

@@ -4,6 +4,8 @@
     Version: 1.0
     Author: Onur
     Author Uri: https://www.google.com
+    Text Domain: featured-professor
+    Domain Path: /languages
 */
 
 if (!defined('ABSPATH')) exit;
@@ -19,7 +21,7 @@ class FeaturedProfessor {
     }
 
     function onInit () {
-        wp_register_script("featuredProfessorScript", plugin_dir_url(__FILE__) . "build/index.js", ["wp-blocks", "wp-editor"]);
+        wp_register_script("featuredProfessorScript", plugin_dir_url(__FILE__) . "build/index.js", ["wp-blocks", "wp-editor", "wp-i18n"]);
         wp_register_style("featuredProfessorStyle", plugin_dir_url(__FILE__) . "build/index.css");
         register_block_type("ourplugin/featured-professor", [
             "editor_script" => "featuredProfessorScript",
@@ -34,6 +36,9 @@ class FeaturedProfessor {
             "type" => "number",
             "single" => false
         ]);
+
+        load_plugin_textdomain("featured-professor", false, dirname(plugin_basename(__FILE__)) . "/languages");
+        wp_set_script_translations("featuredProfessorScript", "featured-professor", plugin_dir_path(__FILE__) . "/languages");
     }
     function renderCallback ($attributes) {
         if ($attributes["profId"]):
